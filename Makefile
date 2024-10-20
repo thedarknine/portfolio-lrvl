@@ -15,17 +15,30 @@ down:
 restart:
 	docker-compose restart
 
+## Run Pint code style fixer
+pint:
+	docker-compose exec app ./vendor/bin/pint
+
+## Update DB
+db-update:
+# docker-compose exec app php artisan migrate:refresh
+	docker-compose exec app php artisan migrate:fresh --seed
+
 ## Encrypt env file
 env-encrypt:
 	docker-compose exec app php artisan env:encrypt
 
 ## Clear config
-config-clear:
+clear:
 	docker-compose exec app php artisan config:clear
+	docker-compose exec app php artisan cache:clear
 
 # docker-compose exec app php artisan migrate
+# docker-compose exec app php artisan make:model Company -ms
+# docker-compose exec app php artisan make:seeder CompanySeeder
+# First migration
+# docker exec app-portfolio-laravel php artisan migrate:fresh
 # docker-compose exec app composer require vendor/package-name
-# docker-compose exec app php artisan env:encrypt
 
 ## ------
 
