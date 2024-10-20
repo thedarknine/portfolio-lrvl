@@ -1,0 +1,87 @@
+services:
+
+####################################################################################################
+# app
+####################################################################################################
+  app:
+    container_name: app-portfolio-laravel
+    build:
+      context: .docker/php
+    restart: unless-stopped
+    environment:
+      VIRTUAL_HOST: portfolio.test
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+      - ~/.ssh:/root/.ssh
+    depends_on:
+      - database
+    networks:
+      - portfolio-ntwk
+
+####################################################################################################
+# DATABASE (MySQL)
+####################################################################################################
+  database:
+    container_name: mysql-portfolio-laravel
+    build:
+      context: .docker/mysql
+    restart: on-failure
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./.docker/mysql/logs:/var/log/mysql
+      - ./.docker/mysql/ql:/docker-entrypoint-initdb.d
+      - ./.docker/volumes/portfoliodb:/var/lib/mysql
+    networks:
+      - portfolio-ntwk
+
+
+####################################################################################################
+# Nginx
+####################################################################################################      
+  engine:
+    container_name: nginx-portfolio-laravel
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - 8080:80
+      - 443:443
+    volumes:
+      - ./:/var/www
+      - ./.docker/nginx:/etc/nginx/conf.d
+      - ./.docker/nginx/ssl:/etc/nginx/conf.d/ssl
+      - ./.docker/volumes/nginx/logs:/var/log/nginx/
+    networks:
+      - portfolio-ntwk
+
+####################################################################################################
+# phpMyAdmin
+####################################################################################################      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin-portfolio-laravel
+    ports:
+        - 8088:80
+    links:
+        - database
+    restart: unless-stopped
+    environment:
+        PMA_HOST: db
+        #PMA_USER: ${DB_USERNAME}
+        #PMA_PASSWORD: ${DB_PASSWORD}
+        PMA_PORT: 3306
+        PMA_ARBITRARY: 1
+    networks:
+        - portfolio-ntwk
+ 
+networks:
+  portfolio-ntwk:
+    driver: bridge

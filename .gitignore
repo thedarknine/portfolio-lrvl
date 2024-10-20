@@ -6,8 +6,10 @@ yarn-error.log
 # Laravel 4 specific
 bootstrap/compiled.php
 app/storage/
+/database/migrations/*.php
 
 # Laravel 5 & Lumen specific
+public/build
 public/storage
 public/hot
 
@@ -15,9 +17,24 @@ public/hot
 public_html/storage
 public_html/hot
 
-storage/*.key
 .env
 Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
+/.phpunit.cache
+.phpactor.json
+auth.json
+/.vscode
+/.zed
+/.idea
+/.editorconfig
+
+# Docker
+/.docker/mysql/logs/*
+/.docker/mysql/ql/*
+/.docker/nginx/ssl/*
+/.docker/volumes/nginx/logs/*
+/.docker/volumes/portfoliodb/*
+
