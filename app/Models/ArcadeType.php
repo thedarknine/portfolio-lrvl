@@ -8,9 +8,12 @@
  * with this source code in the file LICENSE.
  */
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-abstract class Controller
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Model;
+
+class ArcadeType extends Model
 {
-    //
+    use HasUuids;
 }

@@ -13,7 +13,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-class PhotoType extends Model
+class Experience extends Model
 {
     use HasUuids;
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'experience_skill');
+    }
 }
