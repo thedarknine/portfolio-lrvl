@@ -15,9 +15,17 @@ down:
 restart:
 	docker-compose restart
 
+## Run dev mode
+dev:
+	docker-compose exec app npm run dev
+
+## Run production mode
+prod:
+	docker-compose exec app npm run build
+
 ## Run Pint code style fixer
 pint:
-	docker-compose exec app ./vendor/bin/pint
+	docker-compose exec app ./vendor/bin/pint --config=pint.json
 
 ## Update DB
 db-update:
