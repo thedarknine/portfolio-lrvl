@@ -9,3 +9,7 @@ Route::get('/competences', [IndexController::class, 'competences']);
 Route::get('/formation', [IndexController::class, 'formation']);
 Route::get('/projets', [IndexController::class, 'projets']);
 Route::get('/arcade', [IndexController::class, 'arcade']);
+
+Route::fallback(function () {
+    return view('errors.404');
+});
