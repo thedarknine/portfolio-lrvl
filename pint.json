@@ -1,0 +1,19 @@
+{
+    "preset": "laravel",
+    "exclude": [
+        "tests",
+        "storage",
+        "bootstrap",
+        "vendor",
+        "config",
+        "database",
+        "routes"
+    ],
+    "rules": {
+        "header_comment": {
+            "comment_type": "PHPDoc",
+            "header": "This file is part of the Portfolio project.\n(c) Caroline Noyer <hello@carolinenoyer.fr>\n\nThis source file is subject to the MIT license that is bundled\nwith this source code in the file LICENSE.",
+            "location": "after_open"
+        }
+    }
+}

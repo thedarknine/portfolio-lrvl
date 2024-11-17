@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*@import "https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap";
+*/
+
+html {
+    font-family: theme("fontFamily.normal");
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+}
+
+/* Header */
+#toggle_nav:checked ~ div #hamburger #line
+{
+    @apply rotate-45 translate-y-1.5 
+}
+
+#toggle_nav:checked ~ div #hamburger #line2
+{
+    @apply -rotate-45 -translate-y-1
+}
+
+.sticky-nav {
+    @apply shadow-md bg-slate-800;
+    transition: 0.6s;
+}

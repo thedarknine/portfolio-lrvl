@@ -24,3 +24,5 @@ RUN rm -rf /var/www/html
 
 # Copy existing application directory contents
 COPY . /var/www
+
+#RUN php artisan migrate

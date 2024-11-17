@@ -6,7 +6,8 @@ services:
   app:
     container_name: app-portfolio-laravel
     build:
-      context: .docker/php
+      context: .docker
+      dockerfile: php.dockerfile
     restart: unless-stopped
     environment:
       VIRTUAL_HOST: portfolio.test
@@ -14,8 +15,25 @@ services:
     volumes:
       - ./:/var/www
       - ~/.ssh:/root/.ssh
+      - ./.docker/nginx/ssl:/etc/nginx/conf.d/ssl
     depends_on:
       - database
+    networks:
+      - portfolio-ntwk
+
+  vite:
+    # image: node:16-alpine
+    container_name: vite
+    build:
+      context: .docker
+      dockerfile: php.dockerfile
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+      - ./.docker/nginx/ssl:/etc/nginx/conf.d/ssl
+    ports:
+      - "5173:5173"
+    command: ["npm", "run", "dev"]
     networks:
       - portfolio-ntwk
 
@@ -25,7 +43,8 @@ services:
   database:
     container_name: mysql-portfolio-laravel
     build:
-      context: .docker/mysql
+      context: .docker
+      dockerfile: mysql.dockerfile
     restart: on-failure
     ports:
       - "3306:3306"
@@ -37,7 +56,7 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
-      - ./.docker/mysql/logs:/var/log/mysql
+      - ./.docker/volumes/mysql/logs:/var/log/mysql
       - ./.docker/mysql/ql:/docker-entrypoint-initdb.d
       - ./.docker/volumes/portfoliodb:/var/lib/mysql
     networks:
@@ -49,16 +68,21 @@ services:
 ####################################################################################################      
   engine:
     container_name: nginx-portfolio-laravel
-    image: nginx:alpine
+    build:
+      context: .docker
+      dockerfile: nginx.dockerfile
     restart: unless-stopped
     ports:
       - 8080:80
-      - 443:443
+      - 8443:443
     volumes:
       - ./:/var/www
       - ./.docker/nginx:/etc/nginx/conf.d
       - ./.docker/nginx/ssl:/etc/nginx/conf.d/ssl
       - ./.docker/volumes/nginx/logs:/var/log/nginx/
+    depends_on:
+      - app
+      - phpmyadmin
     networks:
       - portfolio-ntwk
 
