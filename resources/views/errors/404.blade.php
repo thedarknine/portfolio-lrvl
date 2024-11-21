@@ -9,8 +9,7 @@
             Page Not Found
         </div>
         <button class="mt-5">
-            <a href="/"
-                class="relative inline-block text-sm font-medium text-n9turquoise group active:text-sky-500 focus:outline-none focus:ring">
+            <a class="relative inline-block text-sm font-medium text-n9turquoise group active:text-sky-500 focus:outline-none focus:ring" href="/">
                 
                 <span class="relative block px-8 py-3 bg-[#1A2238] border border-current rounded-md">
                     Go Home

@@ -7,10 +7,13 @@
         "commit": "cz"
     },
     "devDependencies": {
+        "@html-eslint/eslint-plugin": "^0.27.0",
+        "@html-eslint/parser": "^0.27.0",
         "@vitejs/plugin-basic-ssl": "^1.1.0",
         "autoprefixer": "^10.4.20",
         "axios": "^1.7.4",
         "concurrently": "^9.0.1",
+        "eslint": "^9.15.0",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.47",
         "prettier": "^3.3.3",
