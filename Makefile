@@ -27,6 +27,11 @@ prod:
 pint:
 	docker-compose exec app ./vendor/bin/pint --config=pint.json
 
+## Run all code style fixer
+cs: pint
+	docker-compose exec app php artisan blade:lint
+	npx eslint
+
 ## Update DB
 db-update:
 # docker-compose exec app php artisan migrate:refresh
@@ -47,6 +52,9 @@ clear:
 # First migration
 # docker exec app-portfolio-laravel php artisan migrate:fresh
 # docker-compose exec app composer require vendor/package-name
+# https://blade-ui-kit.com/blade-icons
+# docker-compose exec app composer require codeat3/blade-ant-design-icons
+# docker-compose exec app composer require --dev bdelespierre/laravel-blade-linter 
 
 ## ------
 
