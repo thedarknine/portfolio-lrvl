@@ -19,14 +19,14 @@ class Page
     public string $path;
 
     // SVG path
-    public string $svgPath;
+    public string $icon;
 
-    public function __construct($title, $path, $svgPath = null)
+    public function __construct($title, $path, $icon = null)
     {
         $this->title = $title;
         $this->path = $path;
-        if ($svgPath) {
-            $this->svgPath = $svgPath;
+        if ($icon) {
+            $this->icon = $icon;
         }
     }
 }

@@ -10,10 +10,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArcadeType;
 use App\Models\Experience;
 use App\Models\Page;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class IndexController extends Controller
@@ -67,9 +70,23 @@ class IndexController extends Controller
     // Arcade page
     public function arcade(): View
     {
+        $arcadeTypesList = ArcadeType::get()->sortBy('position');
+        $arcadeList = [];
+
+        foreach ($arcadeTypesList as $type) {
+            $arcadeList[$type->label] = [];
+            $files = File::allFiles(public_path('images/arcade/'.$type->label));
+
+            foreach ($files as $file) {
+                $arcadeList[$type->label][] = $file->getFilename(); 
+            }
+        }
+        
         return view('arcade', [
             'listOfPages' => $this->getPages(),
             'socialLinks' => $this->getSocialLinks(),
+            'arcadeTypesList' => $arcadeTypesList,
+            'arcadeList' => $arcadeList,
         ]);
     }
 
@@ -90,7 +107,7 @@ class IndexController extends Controller
         $menuSocial = Config::get('menu.social');
         $listOfLinks = collect();
         foreach ($menuSocial as $link) {
-            $listOfLinks->push(new Page($link['title'], $link['url'], $link['svgPath']));
+            $listOfLinks->push(new Page($link['title'], $link['url'], $link['icon']));
         }
 
         return $listOfLinks;
