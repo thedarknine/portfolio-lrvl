@@ -30,7 +30,7 @@ pint:
 ## Run all code style fixer
 cs: pint
 	docker-compose exec app php artisan blade:lint
-	npx eslint
+	npx eslint --fix
 
 ## Update DB
 db-update:

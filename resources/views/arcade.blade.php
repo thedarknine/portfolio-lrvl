@@ -21,7 +21,7 @@
             <div class="grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 @foreach($arcadeList['final'] as $arcade)
                 <div class="shadow-lg mb-4">
-                    <img src="images/arcade/final/{{ $arcade }}" alt="arcade" class="rounded-md">
+                    <img class="rounded-md" src="images/arcade/final/{{ $arcade }}" alt="arcade">
                 </div>      
                 @endforeach
             </div>
