@@ -2,26 +2,19 @@
     <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
         <div class="m-auto md:w-10/12 lg:w-8/12 xl:w-6/12">
             <div class="flex flex-wrap items-center justify-between md:flex-nowrap text-sm ">
-                <div class="flex w-full justify-center space-x-12 text-gray-600 sm:w-7/12 md:justify-start">
-                    <ul class="list-inside list-disc space-y-8">
-                        <li><a href="/" class="transition hover:text-primary">Home</a></li>
+                <div class="flex w-full justify-center space-x-12 text-gray-500 sm:w-7/12 md:justify-start">
+                    <ul class="list-inside list-none space-y-8">
+                        <li><a href="/" class="transition hover:text-n9turquoise">Home</a></li>
                         @foreach ($listOfPages as $page)
-                        <li><a href="{{ $page->path }}" class="transition hover:text-sky-500">{{ $page->title }}</a></li>
+                        <li><a href="{{ $page->path }}" class="transition hover:text-n9turquoise">{{ $page->title }}</a></li>
                         @endforeach
                     </ul>
         
                     <ul role="list" class="space-y-8">
                         @foreach ($socialLinks as $link)
                         <li>
-                            <a href="{{ $link->path }}" class="flex items-center space-x-3 transition hover:text-sky-500">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="currentColor"
-                                    class="w-5"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path d="{{ $link->svgPath }}" />
-                                </svg>
+                            <a href="{{ $link->path }}" class="flex items-center space-x-3 transition hover:text-n9turquoise">
+                                @svg($link->icon, 'w-5')
                                 <span>{{ $link->title }}</span>
                             </a>
                         </li>

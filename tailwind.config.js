@@ -61,6 +61,8 @@ export default {
             primary: "#9333EA",
             secondary: "#ff7e33",
             info: "#0C63E7",
+            n9turquoise: "#0C91B9",
+            n9darkblue: "#0F2238",
             black: colors.black,
             white: colors.white,
             slate: colors.slate,

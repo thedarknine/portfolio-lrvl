@@ -5,7 +5,7 @@
                 <input type="checkbox" name="toggle_nav" id="toggle_nav" class="peer hidden">
                 <div class="w-full flex justify-between md:w-max md:px-0">
                     <a href="/" aria-label="logo">
-                        <img src="images/global/logo-cnoyer-full-250-white.svg" class="w-36 grayscale contrast-50" width="144" height="68">
+                        <img src="images/global/logo-cnoyer-full-250-white.svg" class="w-48 grayscale contrast-50 md:pt-3">
                     </a>
 
                     <div class="flex items-center md:hidden max-h-10">
@@ -28,7 +28,7 @@
                         md:left-0 md:h-auto w-4/5 md:max-w-none md:relative lg:first-letter:top-0">
                     <div class="flex md:hidden w-full pb-5">
                         <a href="#" aria-label="logo">
-                            <img src="images/logo.svg" class="w-36 grayscale contrast-200" alt="tailus logo" width="144" height="68">
+                            <img src="images/global/logo-cnoyer-full-250-white.svg" class="w-36 grayscale contrast-200" alt="Caroline Noyer logo" width="144" height="68">
                         </a>
                     </div>
                     <div class="block w-full h-full md:h-auto">
@@ -37,7 +37,7 @@
                             <li>
                                 @if(Request::getPathInfo() === '/'.$page->path)
                                 <a href="{{ $page->path }}" class="block md:px-3">
-                                    <div class="relative text-sky-500
+                                    <div class="relative text-n9turquoise
                                                 before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left before:mx-auto before:mt-auto before:rounded-full before:bg-sky-700">
                                         <span>{{ $page->title }}</span>
                                     </div>
@@ -47,7 +47,7 @@
                                     <div class="relative text-gray-300
                                                 before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left before:mx-auto before:mt-auto before:rounded-full before:bg-sky-700 
                                                 before:transition before:scale-x-0 group-hover:before:scale-x-100">
-                                        <span class="transition text-gray-200 group-hover:text-sky-500">{{ $page->title }}</span>
+                                        <span class="transition text-gray-200 group-hover:text-n9turquoise">{{ $page->title }}</span>
                                     </div>
                                 </a>
                                 @endif
